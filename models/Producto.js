@@ -6,6 +6,7 @@ const productoSchema = mongoose.Schema({
     precio: { type: Number, required: false},
     calificacion: { type: Number, required: false},
     descripcion: { type: String, required: false},
+    imagenes: { type: Array, requerida: false},
     activo: { type: Boolean, required: false},
     create_user: { type: String, required: [false, "El usuario que crea es requerido"]},
     create_date: { type: Date, required: [false, "La fecha de creación es requerida"]},

@@ -100,7 +100,7 @@ router.get('/obtener/:imageId', function (req, res, next) {
     }
     MediaProducto.findById(req.params.imageId).then((result, err) => {
         if (err) {
-            logger.error("Error obteniendo la imagen");
+            logger.error("Error obteniendo la imagen: " + err);
             return res.status(500).json({
                 codigo: 99,
                 message: "Error obteniendo la imagen",
@@ -117,7 +117,13 @@ router.get('/obtener/:imageId', function (req, res, next) {
             codigo: 0,
             resultado: result
         });
-    });
+    }).catch(err => {
+        return res.status(500).json({
+            codigo: 99,
+            message: "Error obteniendo la imagen",
+            err: err.message
+        });
+    });;
 });
 
 router.delete('/eliminar/:imageId', function (req, res, next) {
@@ -180,6 +186,12 @@ router.delete('/eliminar/:imageId', function (req, res, next) {
             ftpClient.end();
         });
         ftpClient.connect(data);
+    }).catch(err => {
+        return res.status(500).json({
+            codigo: 99,
+            message: "Error eliminando la imagen",
+            err: err.message
+        });
     });
 });
 module.exports = router;
