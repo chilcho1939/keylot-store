@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 
 //API routes
 app.use('/api/media', mediaRoutes);
-app.use('/api/productos', productoRoutes);
+app.use('/api/producto', productoRoutes);
 
 /** Configuración de la vista interna del server*/
 app.set('views', path.join(__dirname, '/views'));
