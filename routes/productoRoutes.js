@@ -6,21 +6,21 @@ const constants = require('../commons/constants');
 /**
  * Método para obtener solo los datos del producto
  */
-router.get('/getById', function(req, res, next){
+router.get('/getById/:idProducto', function(req, res, next){
 
 });
 
 /**
  * Método para obtener todos los productos por categoria con paginación
  */
-router.get('/findByIdCategoria', function(req, res, next){
+router.get('/findByIdCategoria/:idCategoria', function(req, res, next){
 
 });
 
 /**
  * Método para obtener el producto con sus imagenes relacionadas
  */
-router.get('/getProductAndImages', function(req, res, next){
+router.get('/getProductAndImages/:idProducto', function(req, res, next){
 
 });
 
@@ -41,7 +41,7 @@ router.put('/update', function(req, res, next){
 /**
  * Método para eliminar un producto y sus imagenes
  */
-router.delete('/delete', function(req, res, next){
+router.delete('/delete/:idProducto', function(req, res, next){
 
 });
 

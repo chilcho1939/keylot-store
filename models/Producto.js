@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 const productoSchema = mongoose.Schema({
-    descripcion: { type: String, required: true},
-    activo: { type: Boolean, required: true},
-    create_user: { type: String, required: true},
-    create_date: { type: Date, required: true},
-    update_user: { type: String, required: true},
+    categoria_id: { type: mongoose.Types.Array, default: [], required: [true, "La categoria del producto es requerida"]},
+    titulo: { type: String, required: false},
+    precio: { type: Number, required: false},
+    calificacion: { type: Number, required: false},
+    descripcion: { type: String, required: false},
+    activo: { type: Boolean, required: false},
+    create_user: { type: String, required: [true, "El usuario que crea es requerido"]},
+    create_date: { type: Date, required: [true, "La fecha de creación es requerida"]},
+    update_user: { type: String, required: [true, "El usuario que actualiza es requerido"]},
     update_date: { type: Date, default: Date.now }
 });
 
