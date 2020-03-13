@@ -13,6 +13,7 @@ mongoConnection(process.env.MONGO_STRING_CONNECTION);
 //Api routes
 const mediaRoutes = require("./routes/mediaRoutes");
 const productoRoutes = require("./routes/productoRoutes");
+const categoriaRoutes = require("./routes/categoriaRoutes");
 
 /** Configuración de la vista interna del server*/
 //app.set('views', path.join(__dirname, '/views'));
@@ -42,6 +43,7 @@ app.use(function(req, res, next) {
 //API routes
 app.use('/api/media', mediaRoutes);
 app.use('/api/producto', productoRoutes);
+app.use('/api/categoria', categoriaRoutes);
 
 /** Configuración de la vista interna del server*/
 app.set('views', path.join(__dirname, '/views'));
