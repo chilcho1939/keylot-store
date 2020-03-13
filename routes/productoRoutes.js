@@ -179,7 +179,8 @@ router.post('/crear', function(req, res, next){
         logger.error("Error al guardar el producto: " + err);
         return res.status(500).json({
             codigo: 99,
-            message: 'Error guardando el producto, favor de revisar'
+            message: 'Error guardando el producto, favor de revisar',
+            err: err.message
         });
     });
 
@@ -214,7 +215,7 @@ router.put('/actualizar', function(req, res, next){
             return res.status(500).json({
                 codigo: 99,
                 message: "Error actualizando el producto",
-                err: err
+                err: err.message
             });
         }
         return res.status(200).json({
