@@ -57,7 +57,6 @@ router.get('/findByIdCategoria/:idCategoria', function(req, res, next){
             codigo: 99
         });
     }
-    var temp = [];
     Categoria.findById({
         _id: req.params.idCategoria
     }, (err, result) => {
