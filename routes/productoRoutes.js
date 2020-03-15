@@ -23,7 +23,7 @@ router.get('/getById/:idProducto', function(req, res, next){
             return res.status(500).json({
                 codigo: 99,
                 message: "Error obteniendo el producto",
-                err: err
+                err: err.message
             });
         }
 
@@ -57,6 +57,7 @@ router.get('/findByIdCategoria/:idCategoria', function(req, res, next){
             codigo: 99
         });
     }
+    var temp = [];
     Categoria.findById({
         _id: req.params.idCategoria
     }, (err, result) => {
@@ -79,12 +80,34 @@ router.get('/findByIdCategoria/:idCategoria', function(req, res, next){
                     err: err
                 });
             }
-            return res.status(200).json({
-                codigo: 0,
-                resultado: docs || null
+            docs.forEach(el => {
+                MediaProducto.find({
+                    producto_id: el._id
+                }, (err, images) => {
+                    if (err) {
+                        logger.error("las imagenes del producto: " + err);
+                        return;
+                    }
+                    el.imagenes = [];
+                    if(images instanceof Array) {
+                        el.imagenes.push({
+                            idImagen:  images[0]._id,
+                            url: images[0].path_archivo
+                        });
+                    } else {
+                        el.imagenes.push({
+                            idImagen: images._id,
+                            url: images.path_archivo
+                        });
+                    }
+                    return res.status(200).json({
+                        codigo: 0,
+                        resultado: docs || null
+                    });
+                });
             });
-        })
-    })
+        });
+    });
 });
 
 /**

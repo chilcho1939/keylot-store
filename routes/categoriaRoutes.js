@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const logger = require("../configs/log4js");
 const Categoria = require('../models/Categoria');
+const Producto = require('../models/Producto');
+const MediaProducto = require('../models/MediaProducto');
 
 /**
  * Método para obtener una categoría por id
  */
-router.get('/getById', function(req, res, next) {
+router.get('/getById/:idCategoria', function(req, res, next) {
     if(!req.params.idCategoria) {
         return res.status(400).json({
             message: "Parametros incompletos, favor de validar",
@@ -101,7 +103,7 @@ router.post('/crear', function(req, res, next) {
  * Método que actualiza una categoría
  */
 router.put('/actualizar', function(req, res, next){
-    if(!req.body.idCategoria || (!req.body.descripcion || req.body.descripcion == '')) {
+    if(!req.body.idCategoria || (!req.body.descripcion || req.body.descripcion == '') || (!req.body.usuario || req.body.usuario == '')) {
         return res.status(400).json({
             message: "Parametros incompletos, favor de validar",
             codigo: 99
@@ -112,7 +114,7 @@ router.put('/actualizar', function(req, res, next){
         _id: req.body.idCategoria
     }, {
         descripcion: req.body.descripcion,
-        update_user: request.usuario,
+        update_user: req.body.usuario,
         update_date: new Date()
     }, {useFindAndModify: false}, (err, data) => {
         if (err) {
@@ -141,7 +143,7 @@ router.delete('/eliminar/:idCategoria', function(req, res, next){
         });
     }
 
-    Producto.findOneAndDelete({
+    Categoria.findOneAndDelete({
         _id: req.params.idCategoria
     }, (err, data) => {
         if (err) {
