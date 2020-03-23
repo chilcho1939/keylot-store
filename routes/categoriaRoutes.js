@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const logger = require("../configs/log4js");
 const Categoria = require('../models/Categoria');
-const Producto = require('../models/Producto');
-const MediaProducto = require('../models/MediaProducto');
 
 /**
  * Método para obtener una categoría por id
@@ -84,7 +82,6 @@ router.post('/crear', function(req, res, next) {
     });
 
     categoria.save().then((result) => {
-        logger.info(result);
         return res.status(200).json({
             codigo: 0,
             resultado: "Categoría creada exitosamente"

@@ -65,7 +65,7 @@ router.get('/findByIdCategoria/:idCategoria', function(req, res, next){
             return res.status(500).json({
                 codigo: 99,
                 message: "Error buscando la categoria proporcionada",
-                err: err
+                err: err.message
             });
         }
         Producto.find({
