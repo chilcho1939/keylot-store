@@ -7,7 +7,7 @@ const UsuarioPerfil = require("../models/usaurioPerfil");
  * Método que obtiene una entidad por los id's de usuario y perfil
  */
 router.get('/getByUserAndProfile', function(req, res, next) {
-    if(!req.params.idUsuario && !req.params.idPerfil) {
+    if(!req.query.idUsuario && !req.query.idPerfil) {
         return res.status(400).json({
             message: "Parametros incompletos, favor de validar",
             codigo: 99
@@ -15,8 +15,8 @@ router.get('/getByUserAndProfile', function(req, res, next) {
     }
 
     UsuarioPerfil.find({
-        usuario_id: req.params.idUsuario,
-        perfil_id: req.params.idPerfil
+        usuario_id: req.query.idUsuario,
+        perfil_id: req.query.idPerfil
     }, (err, data) => {
         if (err) {
             logger.error("Error al obtener la relación: " + err);

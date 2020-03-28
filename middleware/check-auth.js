@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const constants = require("../commons/Constants");
+const constants = require("../commons/constants");
 const logger = require('../configs/log4js');
 
 module.exports = (req, res, next) => {
@@ -17,8 +17,8 @@ module.exports = (req, res, next) => {
     } catch (err) {
         logger.error(err);
         res.status(401).json({
-            message: "La autenticación falló",
-            err: err
+            message: "No autorizado",
+            err: err.message
         });
     }
 

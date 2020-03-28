@@ -16,7 +16,7 @@ const productoRoutes = require("./routes/productoRoutes");
 const categoriaRoutes = require("./routes/categoriaRoutes");
 const perfilRoutes = require('./routes/perfilRoutes');
 const usuarioPerfilRoutes = require('./routes/usuarioPerfilRoutes');
-
+const usuarioRoutes = require('./routes/usuarioRoutes');
 /** Configuración de la vista interna del server*/
 //app.set('views', path.join(__dirname, '/views'));
 //app.set('view engine', 'hbs');
@@ -48,6 +48,7 @@ app.use('/api/producto', productoRoutes);
 app.use('/api/categoria', categoriaRoutes);
 app.use('/api/perfil', perfilRoutes);
 app.use('/api/usuario-perfil', usuarioPerfilRoutes);
+app.use('/api/usuario', usuarioRoutes);
 
 /** Configuración de la vista interna del server*/
 app.set('views', path.join(__dirname, '/views'));
